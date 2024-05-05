@@ -10,6 +10,7 @@ class MutaColors {
   static const Color secondaryVariantColor = Color(0xFFFF8700);
   static const Color buttonOutlineColor = Color(0xFFBBECED);
   static const Color greenColor = Color(0xFF22B07D);
+  static const Color textColor = Color(0xFFABB3C7);
 
 //   Neutral Colors
   static const Color whiteColor = Color(0xFFFFFFFF);

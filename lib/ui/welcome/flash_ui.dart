@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muta_app/common/constants/muta_colors.dart';
 import 'package:muta_app/common/constants/muta_image_paths.dart';
 
+import '../../bloc/language/all_languages_cubit.dart';
 import 'get_started_ui.dart';
 
-
+// Author: Marcus Dashe <marcusdashe.developer@gmail.com>
 
 class FlashUI extends StatefulWidget {
   const FlashUI({super.key});
@@ -14,7 +16,11 @@ class FlashUI extends StatefulWidget {
   State<FlashUI> createState() => _FlashUIState();
 }
 
-class _FlashUIState extends State<FlashUI> with TickerProviderStateMixin{
+class _FlashUIState extends State<FlashUI> with TickerProviderStateMixin {
+
+
+
+  late LanguagesCubit _languagesCubit;
 
   late AnimationController _animationController;
   late Animation<double> _sizeAnimation;
@@ -23,6 +29,8 @@ class _FlashUIState extends State<FlashUI> with TickerProviderStateMixin{
   @override
   void initState(){
     super.initState();
+
+    _languagesCubit = BlocProvider.of<LanguagesCubit>(context);
 
     _animationController = AnimationController(
       vsync: this,
@@ -45,6 +53,7 @@ class _FlashUIState extends State<FlashUI> with TickerProviderStateMixin{
   }
 
   Future<void> _startAnimations() async {
+    await _languagesCubit.fetchAllLanguages();
     await Future.delayed(const Duration(seconds: 3));
 
     _animationController.forward();
